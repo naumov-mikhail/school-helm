@@ -1,0 +1,16 @@
+user:
+  admin: no
+  name: 'Mikhail'
+  age: 40
+  location: 'Russia'
+  skils: 
+    - programer: | 
+        basic
+        pascal
+        lua
+    - hobby: |
+        reading
+        cycling
+  pets: ['Grog','Fido']
+  merred: no
+  
