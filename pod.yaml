@@ -3,7 +3,7 @@ kind: Pod
 metadata:
   name: conv-app
   labels:
-    components: myapp
+    app: conv-app
 spec:
   containers:
   - name: conv-app
@@ -11,7 +11,9 @@ spec:
     ports:
       - containerPort: 80
     resources:
+      requests:
+        cpu: "250m"      # гарантированный минимум
+        memory: "256Mi"
       limits:
-        memory: "128Mi"
-        cpu: "500m"
-    
+        cpu: "500m"      # верхний предел
+        memory: "512Mi"
