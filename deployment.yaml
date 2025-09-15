@@ -19,7 +19,7 @@ spec:
         - containerPort: 80
         resources:
           requests:
-            cpu: "250m"      # гарантированный минимум
+            cpu: "250m"      # гарантированный минимум!
             memory: "256Mi"
           limits:
             cpu: "500m"      # верхний предел
