@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: conv-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: conv-app
+  template:
+    metadata:
+      labels:
+        app: conv-app
+        components: frontend
+    spec:
+      containers:
+      - name: conv-app
+        image: "antonlarichev/conv-app:1.2"
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            cpu: "250m"      # гарантированный минимум!
+            memory: "256Mi"
+          limits:
+            cpu: "500m"      # верхний предел
+            memory: "512Mi"
+        
