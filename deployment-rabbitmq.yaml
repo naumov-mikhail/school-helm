@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rabbitmq-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rabbitmq
+  template:
+    metadata:
+      labels:
+        app: rabbitmq
+        components: frontend
+    spec:
+      containers:
+      - name: rabbitmq-app
+        image: "rabbitmq:management"
+        ports:
+        - containerPort: 5672
+        - containerPort: 15672
+        env:
+          - name: "RABBITMQ_DEFAULT_USER"
+            value: "demo"
+          - name: "RABBITMQ_DEFAULT_PASS"
+            value: "demo"
+        resources:
+          requests:
+            cpu: "250m"      # гарантированный минимум!
+            memory: "256Mi"
+          limits:
+            cpu: "500m"      # верхний предел
+            memory: "512Mi"
+        volumeMounts:
+          - name: rabbitmq-data
+            mountPath: /var/lib/rabbitmq
+#            subPath: postgres
+      volumes:
+      - name: rabbitmq-data
+        persistentVolumeClaim:
+          claimName: rabbitmq-pvc  
+        
